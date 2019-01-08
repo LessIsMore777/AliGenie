@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+
+project.ext.set("archivesBaseName", 'GenieSdkDemo-' + project.APP_VERSION_NAME)
+
+android {
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_COMPILE_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+
+    signingConfigs {
+        config {
+            storeFile file('../tools/platform_debug.keystore')
+        }
+        debug {
+            storeFile file('../tools/platform_debug.keystore')
+        }
+    }
+    defaultConfig {
+        applicationId "com.alibaba.sdk.aligeniesdkdemo"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode Integer.parseInt(project.APP_VERSION_CODE)
+        versionName project.APP_VERSION_NAME
+        multiDexEnabled true
+//        ndk {
+//            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+//        }
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    //加载aar文件，指定文件，geniesdk-debug是文件名，aar是后缀
+    //如果想在调用者中启动.aar中的Activity，需要在调用者AndroidManifest.xml中声明.aar的Activity
+    //compile (name:'geniesdk-debug',ext:'aar')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.1.0'
+    //compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.1'
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile(name: 'geniesdk_customization_v1.1.18', ext: 'aar')
+    compile(name: 'geniesdk_v1.1.18', ext: 'aar')
+    //compile project(path: ':aliGenieSDK:geniesdk')
+    //compile project(path: ':geniesdk_customization')
+    compile 'com.alibaba:fastjson:1.1.45'
+    provided files('classes_v2.jar')
+
+    compile 'com.hankcs:hanlp:portable-1.6.8'
+}

@@ -1,0 +1,65 @@
+{
+  "version": 20180829,
+  "env": "online",
+  "config": [
+    {
+      "environment": "online",
+      "system": {
+        "biz_type": "iJJRRRoO",
+        "biz_group": "CtCaSNJu"
+      },
+      "gateway_cloud": {
+        "port": 443,
+        "use_ssl": true,
+        "protocol_ver": "1.0",
+        "addr": "gw-aicloud.alibaba.com"
+      },
+      "speech": {
+        "addr": "asr-aicloud.alibaba.com",
+        "port": 443,
+        "use_ssl": true,
+        "coretype": "cn.asr.rec",
+        "res": "aihome",
+        "audio_type": "ogg",
+        "compress": "speex",
+        "quality": 8
+      }
+    },
+    {
+      "environment": "daily",
+      "system": {
+        "biz_type": "zoWULKwk",
+        "biz_group": "MQSbTBah"
+      },
+      "gateway_cloud": {
+        "port": 443,
+        "use_ssl": true,
+        "protocol_ver": "1.0",
+        "addr": "gp2-aicloud.alibaba.com"
+      },
+      "speech": {
+        "addr": "asr-aicloud.alibaba.com",
+        "port": 443,
+        "use_ssl": true,
+        "coretype": "cn.asr.rec",
+        "res": "aihome",
+        "audio_type": "ogg",
+        "compress": "speex",
+        "quality": 8
+      }
+    }
+  ],
+  "featureList": {
+    "otaUpdate": 1,
+    "countDown": 1,
+    "utpControl": 1,
+    "askCmdQueue": 1,
+    "voiceMessage": 1,
+    "deviceSetting": 1,
+    "iotSubDevice": 0,
+    "clockTimer": 1,
+    "nightLight": 0,
+    "operation": 1
+  }
+}
+
